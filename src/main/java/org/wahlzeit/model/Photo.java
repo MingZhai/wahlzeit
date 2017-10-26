@@ -88,6 +88,8 @@ public class Photo extends DataObject {
 	protected EmailAddress ownerEmailAddress = EmailAddress.EMPTY;
 	protected Language ownerLanguage = Language.ENGLISH;
 	
+	String locName = new String("test");
+	protected Location location = new Location(locName);
 	/**
 	 *
 	 */
