@@ -2,11 +2,10 @@ package org.wahlzeit.model;
 
 public class Location {
 
-	protected Coordinate coordinate;
+	public Coordinate coordinate;
 	protected String name;
+
 	
-	public Location() {
-	}
 	public Location(String name) {
 		this.name = new String(name);
 	}
@@ -21,12 +20,10 @@ public class Location {
 	
 	public String getCoordinate() {
 		String tmp = new String("(" 
-									+ this.coordinate.getXCoordinate().toString() + "," 
-									+ this.coordinate.getYCoordinate().toString() + ","
-									+ this.coordinate.getZCoordinate().toString() + 
+									+ String.valueOf(this.coordinate.getXCoordinate()) + "," 
+									+ String.valueOf(this.coordinate.getYCoordinate()) + ","
+									+ String.valueOf(this.coordinate.getZCoordinate()) + 
 									")");
 		return tmp;
 	}
-	
-	
 }

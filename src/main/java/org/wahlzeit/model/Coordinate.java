@@ -2,15 +2,15 @@ package org.wahlzeit.model;
 
 public class Coordinate {
 
-	protected Double x;
-	protected Double y;
-	protected Double z;
+	private double x;
+	private double y;
+	private double z;
 	
 	
 	public Coordinate(double x, double y, double z) {
-		this.x = new Double(x);
-		this.y = new Double(y);
-		this.z = new Double(z);
+		this.x = x;
+		this.y = y;
+		this.z = z;
 	}
 	
 	public double getDistance(Coordinate otherCdnt) {
@@ -20,22 +20,60 @@ public class Coordinate {
 		return Math.sqrt(distanceSquare);
 	}
 	
-	public boolean isEqual(Coordinate otherCdnt) {
-		if(x.equals(otherCdnt.x) && y.equals(otherCdnt.y) && z.equals(otherCdnt.z))
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(x);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(y);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(z);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
 			return true;
-		else 
+		if (obj == null)
 			return false;
+		if (!(obj instanceof Coordinate))
+			return false;
+		Coordinate other = (Coordinate) obj;
+
+		return isEqual(other);
 	}
 	
-	public Double getXCoordinate() {
+	
+	public boolean isEqual(Coordinate other) {
+		if (other == null)
+			return false;
+		if (Double.doubleToLongBits(x) != Double.doubleToLongBits(other.x))
+			return false;
+		if (Double.doubleToLongBits(y) != Double.doubleToLongBits(other.y))
+			return false;
+		if (Double.doubleToLongBits(z) != Double.doubleToLongBits(other.z))
+			return false;
+		else 
+			return true;
+	}
+	
+	public double getXCoordinate() {
 		return this.x;
 	}
 	
-	public Double getYCoordinate() {
+	public double getYCoordinate() {
 		return this.y;
 	}
 	
-	public Double getZCoordinate() {
+	public double getZCoordinate() {
 		return this.z;
 	}
 }
