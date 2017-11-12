@@ -35,6 +35,9 @@ import java.io.FileFilter;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+import org.wahlzeit.model.RiverPhotoFactory;
+import org.wahlzeit.model.RiverPhotoManager;
+
 /**
  * A single-threaded Main class with database connection. Can be used by tools that don't want to start a server.
  */
@@ -60,10 +63,17 @@ public abstract class ModelMain extends AbstractMain {
 		UserManager.getInstance().init();
 
 		log.config(LogBuilder.createSystemMessage().addAction("init PhotoFactory").toString());
-		PhotoFactory.initialize();
+//		PhotoFactory.initialize();
+		RiverPhotoFactory.initialize();
 
 		log.config(LogBuilder.createSystemMessage().addAction("load Photos").toString());
-		PhotoManager.getInstance().init();
+//		PhotoManager.getInstance().init();
+		
+		/*
+		 * guarantee images could be loaded with the help of my class
+		 */
+		RiverPhotoManager.getInstance().init();
+		
 	}
 
 
@@ -81,7 +91,13 @@ public abstract class ModelMain extends AbstractMain {
 	 */
 	public void saveAll() throws IOException{
 		PhotoCaseManager.getInstance().savePhotoCases();
-		PhotoManager.getInstance().savePhotos();
+//		PhotoManager.getInstance().savePhotos();
+		
+		/*
+		 * guarantee images could be saved with the help of my class
+		 */
+		RiverPhotoManager.getInstance().savePhotos();
+		
 		UserManager.getInstance().saveClients();
 		GlobalsManager.getInstance().saveGlobals();
 	}
