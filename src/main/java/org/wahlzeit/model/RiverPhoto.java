@@ -3,7 +3,9 @@ package org.wahlzeit.model;
 import org.wahlzeit.model.Photo;
 import org.wahlzeit.model.PhotoId;
 
+import com.googlecode.objectify.annotation.Subclass;
 
+@Subclass
 public class RiverPhoto extends Photo {
 	
 
