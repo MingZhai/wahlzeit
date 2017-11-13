@@ -109,7 +109,8 @@ public abstract class ModelMain extends AbstractMain {
 		UserManager userManager = UserManager.getInstance();
 		new User(userId, nickName, emailAddress);
 
-		PhotoManager photoManager = PhotoManager.getInstance();
+//		PhotoManager photoManager = PhotoManager.getInstance();
+		RiverPhotoManager photoManager = RiverPhotoManager.getInstance();
 		File photoDirFile = new File(photoDir);
 		FileFilter photoFileFilter = new FileFilter() {
 			public boolean accept(File file) {

@@ -1,7 +1,12 @@
 package org.wahlzeit.model;
 
+import org.wahlzeit.model.Photo;
+import org.wahlzeit.model.PhotoId;
+
+
 public class RiverPhoto extends Photo {
 	
+
 	protected String name;//name of river
 	protected int length;//length of river
 	protected int flow;//flow per second of river
@@ -26,6 +31,18 @@ public class RiverPhoto extends Photo {
 		this.name = name;
 		this.length = length;
 		this.flow = flow;
+	}
+	
+	public String getName() {
+		return this.name;
+	}
+	
+	public int getLength() {
+		return this.length;
+	}
+	
+	public int getFlow() {
+		return this.flow;
 	}
 	
 }
