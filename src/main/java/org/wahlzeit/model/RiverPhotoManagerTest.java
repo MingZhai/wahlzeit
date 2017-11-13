@@ -1,7 +1,9 @@
 package org.wahlzeit.model;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.rules.RuleChain;
@@ -10,10 +12,8 @@ import org.wahlzeit.testEnvironmentProvider.RegisteredOfyEnvironmentProvider;
 import org.wahlzeit.testEnvironmentProvider.SysConfigProvider;
 import org.wahlzeit.testEnvironmentProvider.UserServiceProvider;
 import org.wahlzeit.testEnvironmentProvider.UserSessionProvider;
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.junit.Assert.assertThat;
 
-public class RiverPhotoFactoryTest {
+public class RiverPhotoManagerTest {
 
 	@ClassRule
 	public static RuleChain ruleChain = RuleChain.
@@ -22,17 +22,18 @@ public class RiverPhotoFactoryTest {
 			around(new SysConfigProvider()).
 			around(new UserServiceProvider()).
 			around(new UserSessionProvider());
+	
+	RiverPhotoManager manager;
+	
+	@Before
+	public void setUp() {
+		 manager = new RiverPhotoManager();
+	}
+	
 
 	@Test
 	public void testGetInstance() {
-		assertNotNull(RiverPhotoFactory.getInstance());
-	}
-	
-	@Test
-	public void testSetInstance() {
-		RiverPhotoFactory factory = new RiverPhotoFactory();
-		RiverPhotoFactory.setInstance(factory);
-		assertThat(RiverPhotoFactory.getInstance(), instanceOf(PhotoFactory.class));
+		assertThat(RiverPhotoManager.getInstance(), instanceOf(PhotoManager.class));
 	}
 
 }
