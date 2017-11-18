@@ -91,13 +91,7 @@ public abstract class ModelMain extends AbstractMain {
 	 */
 	public void saveAll() throws IOException{
 		PhotoCaseManager.getInstance().savePhotoCases();
-//		PhotoManager.getInstance().savePhotos();
-		
-		/*
-		 * guarantee images could be saved with the help of my class
-		 */
-		RiverPhotoManager.getInstance().savePhotos();
-		
+		PhotoManager.getInstance().savePhotos();	
 		UserManager.getInstance().saveClients();
 		GlobalsManager.getInstance().saveGlobals();
 	}
@@ -109,8 +103,7 @@ public abstract class ModelMain extends AbstractMain {
 		UserManager userManager = UserManager.getInstance();
 		new User(userId, nickName, emailAddress);
 
-//		PhotoManager photoManager = PhotoManager.getInstance();
-		RiverPhotoManager photoManager = RiverPhotoManager.getInstance();
+		PhotoManager photoManager = PhotoManager.getInstance();
 		File photoDirFile = new File(photoDir);
 		FileFilter photoFileFilter = new FileFilter() {
 			public boolean accept(File file) {

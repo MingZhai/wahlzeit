@@ -9,9 +9,9 @@ import com.googlecode.objectify.annotation.Subclass;
 public class RiverPhoto extends Photo {
 	
 
-	protected String name;//name of river
-	protected int length;//length of river
-	protected int flow;//flow per second of river
+	private String name;//name of river
+	private int length;//length of river
+	private int flow;//flow per second of river
 	
 	public RiverPhoto() {
 		super();

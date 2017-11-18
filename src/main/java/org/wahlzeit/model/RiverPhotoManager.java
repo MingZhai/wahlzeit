@@ -1,18 +1,19 @@
 package org.wahlzeit.model;
 
+import java.util.logging.Logger;
+
 import com.google.appengine.api.images.Image;
 
 public class RiverPhotoManager extends PhotoManager {
 	
-	protected static final RiverPhotoManager instance = new RiverPhotoManager();
+	private static final Logger log = Logger.getLogger(RiverPhotoManager.class.getName());
+	static final RiverPhotoManager instance = new RiverPhotoManager();
 	
-	/**
-	 *
-	 */
 	public RiverPhotoManager() {
-		photoTagCollector = RiverPhotoFactory.getInstance().createPhotoTagCollector();
+		super();
 	}
 	
+
 	/**
 	 *
 	 */
@@ -21,9 +22,7 @@ public class RiverPhotoManager extends PhotoManager {
 	}
 	
 	
-	/**
-	 *
-	 */
+	@Override
 	public Photo createPhoto(String filename, Image uploadedImage) throws Exception {
 		PhotoId id = PhotoId.getNextId();
 		RiverPhoto result = PhotoUtil.createPhoto(filename, id, uploadedImage);
