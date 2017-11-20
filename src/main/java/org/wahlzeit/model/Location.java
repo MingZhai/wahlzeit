@@ -2,7 +2,7 @@ package org.wahlzeit.model;
 
 public class Location {
 
-	public Coordinate coordinate;
+	public CartesianCoordinate coordinate;
 	protected String name;
 
 	
@@ -15,7 +15,7 @@ public class Location {
 	}
 	
 	public void setCoordinate(double x, double y, double z) {
-		this.coordinate = new Coordinate(x, y, z);
+		this.coordinate = new CartesianCoordinate(x, y, z);
 	}
 	
 	public String getCoordinate() {
