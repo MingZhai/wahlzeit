@@ -15,8 +15,11 @@ public class LocationTest {
 
 	@Test
 	public void testGetCoordinate() {
-		location1.setCoordinate(0,3,4);
-		assertEquals("(0.0,3.0,4.0)", location1.getCoordinate());
+		CartesianCoordinate carCoordinate = new CartesianCoordinate(0, 3, 4);
+		location1.setCoordinate(carCoordinate);
+		assertEquals(location1.getCoordinate().asCartesianCoordinate().getXCoordinate(), 0.0, 0.00001);
+		assertEquals(location1.getCoordinate().asCartesianCoordinate().getYCoordinate(), 3.0, 0.00001);
+		assertEquals(location1.getCoordinate().asCartesianCoordinate().getZCoordinate(), 4.0, 0.00001);
 	}
 
 }

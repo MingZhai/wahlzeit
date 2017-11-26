@@ -1,10 +1,11 @@
 package org.wahlzeit.model;
 
-public class SphericCoordinate implements Coordinate{
+public class SphericCoordinate extends AbstractCoordinate{
 
 	private double latitude;
 	private double longitude;
 	private double radius;
+	private static final double DELTA = 0.00001;
 	
 	public SphericCoordinate(double latitude, double longitude, double radius) {
 		this.latitude = latitude;
@@ -39,31 +40,6 @@ public class SphericCoordinate implements Coordinate{
 		return carCoordinate;
 	}
 
-	@Override
-	public double getCartesianDistance(Coordinate coord) {
-		CartesianCoordinate carCoordinate = asCartesianCoordinate(); 
-		return carCoordinate.getCartesianDistance(coord);
-	}
-
-	@Override
-	public double getDistance(Coordinate coord) {
-		return getSphericDistance(coord);
-	}
-
-	@Override
-	public boolean isEqual(Coordinate coord) {
-		if (coord == null)
-			return false;
-		if (Double.doubleToLongBits(latitude) != Double.doubleToLongBits(coord.asSphericCoordinate().latitude) )
-			return false;
-		if (Double.doubleToLongBits(longitude) != Double.doubleToLongBits(coord.asSphericCoordinate().longitude) )
-			return false;
-		if (Double.doubleToLongBits(radius) != Double.doubleToLongBits(coord.asSphericCoordinate().radius) )
-			return false;
-		else 
-			return true;
-	}
-	
 	public double getLatitude() {
 		return this.latitude;
 	}
@@ -92,25 +68,18 @@ public class SphericCoordinate implements Coordinate{
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
+	
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
+	public boolean isEqual(Coordinate coord) {
+		if (coord == null)
+			return false;
+		else if (Math.abs(latitude - coord.asSphericCoordinate().latitude) >= DELTA )
+			return false;
+		else if (Math.abs(longitude - coord.asSphericCoordinate().longitude) >= DELTA)
+			return false;
+		else if (Math.abs(radius - coord.asSphericCoordinate().radius) >= DELTA)
+			return false;
+		else 
 			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof SphericCoordinate))
-			return false;
-		SphericCoordinate other = (SphericCoordinate) obj;
-		if (Double.doubleToLongBits(latitude) != Double.doubleToLongBits(other.latitude))
-			return false;
-		if (Double.doubleToLongBits(longitude) != Double.doubleToLongBits(other.longitude))
-			return false;
-		if (Double.doubleToLongBits(radius) != Double.doubleToLongBits(other.radius))
-			return false;
-		return true;
 	}
 }

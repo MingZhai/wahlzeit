@@ -1,11 +1,11 @@
 package org.wahlzeit.model;
 
-public class CartesianCoordinate implements Coordinate{
+public class CartesianCoordinate extends AbstractCoordinate{
 
 	private double x;
 	private double y;
 	private double z;
-	
+	private static final double DELTA = 0.00001;
 	
 	public CartesianCoordinate(double x, double y, double z) {
 		this.x = x;
@@ -16,7 +16,6 @@ public class CartesianCoordinate implements Coordinate{
 	@Override
 	public CartesianCoordinate asCartesianCoordinate() {
 		return this;
-		
 	}
 	
 	@Override
@@ -28,11 +27,6 @@ public class CartesianCoordinate implements Coordinate{
 		Math.pow((z - carCoordinate.z),2);
 		
 		return Math.sqrt(distanceSquare);
-	}
-	
-	@Override
-	public double getDistance(Coordinate coord) {
-		return getCartesianDistance(coord);
 	}
 	
 	/* (non-Javadoc)
@@ -51,30 +45,16 @@ public class CartesianCoordinate implements Coordinate{
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof Coordinate))
-			return false;
-		CartesianCoordinate other = (CartesianCoordinate) obj;
-
-		return isEqual(other);
-	}
 	
 	@Override
 	public boolean isEqual(Coordinate other) {
 		if (other == null)
 			return false;
-		if (Double.doubleToLongBits(x) != Double.doubleToLongBits(other.asCartesianCoordinate().x) )
+		else if (Math.abs(x - other.asCartesianCoordinate().x) >= DELTA)
 			return false;
-		if (Double.doubleToLongBits(y) != Double.doubleToLongBits(other.asCartesianCoordinate().y) )
+		else if (Math.abs(y - other.asCartesianCoordinate().y) >= DELTA)
 			return false;
-		if (Double.doubleToLongBits(z) != Double.doubleToLongBits(other.asCartesianCoordinate().z) )
+		else if (Math.abs(z - other.asCartesianCoordinate().z) >= DELTA)
 			return false;
 		else 
 			return true;
@@ -100,16 +80,9 @@ public class CartesianCoordinate implements Coordinate{
 								 );
 		
 		double latitude = Math.acos(x/radius);
-		double longitude = Math.atan(y/x);
+		double longitude = Math.atan2(y, x);
 		
 		SphericCoordinate SpheCoordinate = new SphericCoordinate(latitude, longitude, radius);
 		return SpheCoordinate;
 	}
-
-	@Override
-	public double getSphericDistance(Coordinate coord) {
-		SphericCoordinate SpheCoordinate = asSphericCoordinate();
-		return SpheCoordinate.getSphericDistance(coord);
-	}
-
 }

@@ -10,12 +10,14 @@ public class SphericCoordinateTest {
 	CartesianCoordinate caCoordinate;
 	SphericCoordinate spheCoordinate;
 	SphericCoordinate spheCoordinate_b;
+	SphericCoordinate spheCoordinate_new;
 	
 	@Before
 	public void setUp() throws Exception {
 		caCoordinate = new CartesianCoordinate(1.0, 2.0, 3.0);
 		spheCoordinate = new SphericCoordinate(1.0, 2.0, 3.0);
 		spheCoordinate_b = new SphericCoordinate(1.0, 2.0, 3.0);
+		spheCoordinate_new = new SphericCoordinate(1.0, 5.0, 7.0);
 	}
 
 	@Test
@@ -25,7 +27,12 @@ public class SphericCoordinateTest {
 
 	@Test
 	public void testGetSphericDistance() {
-		assertNotNull(spheCoordinate.getSphericDistance(caCoordinate));
+		assertEquals(spheCoordinate.getDistance(spheCoordinate_new), 6.35603, 0.00001);
+	}
+	
+	@Test
+	public void testGetDistance() {
+		assertEquals(spheCoordinate.getDistance(spheCoordinate_b), 0, 0.000000001);
 	}
 
 	@Test
@@ -36,11 +43,6 @@ public class SphericCoordinateTest {
 	@Test
 	public void testGetCartesianDistance() {
 		assertNotNull(spheCoordinate.getCartesianDistance(caCoordinate));
-	}
-
-	@Test
-	public void testGetDistance() {
-		assertEquals(spheCoordinate.getDistance(spheCoordinate_b), 0, 0.000000001);
 	}
 
 	@Test

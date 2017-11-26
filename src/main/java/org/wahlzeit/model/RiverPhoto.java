@@ -21,30 +21,30 @@ public class RiverPhoto extends Photo {
 		super(myId);
 	}
 	
-	public RiverPhoto(String name, int length, int flow) {
-		super();
-		this.name = name;
-		this.length = length;
-		this.flow = flow;
-	}
+//	public RiverPhoto(String name, int length, int flow) {
+//		super();
+//		this.name = name;
+//		this.length = length;
+//		this.flow = flow;
+//	}
+//	
+//	public RiverPhoto(PhotoId myId, String name, int length, int flow) {
+//		super(myId);
+//		this.name = name;
+//		this.length = length;
+//		this.flow = flow;
+//	}
 	
-	public RiverPhoto(PhotoId myId, String name, int length, int flow) {
-		super(myId);
-		this.name = name;
-		this.length = length;
-		this.flow = flow;
-	}
-	
-	public String getName() {
-		return this.name;
-	}
-	
-	public int getLength() {
-		return this.length;
-	}
-	
-	public int getFlow() {
-		return this.flow;
-	}
+//	public String getName() {
+//		return this.name;
+//	}
+//	
+//	public int getLength() {
+//		return this.length;
+//	}
+//	
+//	public int getFlow() {
+//		return this.flow;
+//	}
 	
 }

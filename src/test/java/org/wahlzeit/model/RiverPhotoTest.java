@@ -25,12 +25,12 @@ public class RiverPhotoTest {
 	public void testRiverPhotoStringIntInt() {
 		
 		RiverPhotoFactory factory = new RiverPhotoFactory();
-		
-		RiverPhoto ph1 = factory.createPhoto("test", 1, 2);
+		PhotoId id = new PhotoId(100);
+		RiverPhoto ph1 = factory.createPhoto(id);
 		assertNotNull(ph1.getId());
-		assertEquals("test", ph1.getName());
-		assertEquals(1, ph1.getLength());
-		assertEquals(2, ph1.getFlow());
+//		assertEquals("test", ph1.getName());
+//		assertEquals(1, ph1.getLength());
+//		assertEquals(2, ph1.getFlow());
 	}
 
 	@Test
@@ -39,12 +39,12 @@ public class RiverPhotoTest {
 		PhotoId id = new PhotoId(100);
 		
 		RiverPhotoFactory factory = new RiverPhotoFactory();
-		RiverPhoto ph1 = factory.createPhoto(id, "test", 1, 2);
+		RiverPhoto ph1 = factory.createPhoto(id);
 		
 		assertNotNull(ph1.getId());
-		assertEquals("test", ph1.getName());
-		assertEquals(1, ph1.getLength());
-		assertEquals(2, ph1.getFlow());
+//		assertEquals("test", ph1.getName());
+//		assertEquals(1, ph1.getLength());
+//		assertEquals(2, ph1.getFlow());
 	}
 
 }

@@ -13,16 +13,16 @@ public class RiverPhotoFactory extends PhotoFactory {
 	
 	private static final Logger log = Logger.getLogger(PhotoFactory.class.getName());
 	
-	/**
-	 * overload two create methods because they have special parameters
-	 */
-	public RiverPhoto createPhoto(String name, int length, int flow) {
-		return new RiverPhoto(name, length, flow);
-	}
-
-	public RiverPhoto createPhoto(PhotoId id, String name, int length, int flow) {
-		return new RiverPhoto(id, name, length, flow);
-	}
+//	/**
+//	 * overload two create methods because they have special parameters
+//	 */
+//	public RiverPhoto createPhoto(String name, int length, int flow) {
+//		return new RiverPhoto(name, length, flow);
+//	}
+//
+//	public RiverPhoto createPhoto(PhotoId id, String name, int length, int flow) {
+//		return new RiverPhoto(id, name, length, flow);
+//	}
 	
 	/**
 	 * @methodtype factory
